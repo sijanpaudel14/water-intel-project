@@ -163,11 +163,11 @@ function setQuickScenario(scenario) {
   const tdsInput = document.getElementById('tds')
 
   // Values calibrated to match trained model predictions:
-  // SAFE (0): pH ~7.0, TDS ~300
-  // STRESS (1): pH <6.5 or >7.5, TDS ~300-400
+  // SAFE (0): pH ~7.0, TDS ~200
+  // STRESS (1): pH ~6.3, TDS ~400
   // DANGER (2): pH ~5.9, TDS ~200
   const scenarios = {
-    safe: { ph: 7.0, tds: 300 }, // Returns prediction=0 (SAFE)
+    safe: { ph: 7.0, tds: 200 }, // Returns prediction=0 (SAFE)
     stress: { ph: 6.3, tds: 400 }, // Returns prediction=1 (STRESS)
     danger: { ph: 5.9, tds: 200 }, // Returns prediction=2 (DANGER)
   }
@@ -176,6 +176,7 @@ function setQuickScenario(scenario) {
   if (values && phInput && tdsInput) {
     phInput.value = values.ph
     tdsInput.value = values.tds
+
     showNotification(
       `Set ${scenario.toUpperCase()} scenario (pH: ${values.ph}, TDS: ${
         values.tds
